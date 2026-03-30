@@ -1,0 +1,183 @@
+/* ─── SPIN ─────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── HEARTBEAT ────────────────────────── */
+@keyframes heartbeat {
+  0%, 50%, 100% { transform: scale(1); }
+  30%, 70%       { transform: scale(1.04); }
+}
+
+/* ─── BOUNCE UP (CTA) ──────────────────── */
+@keyframes bounceUp {
+  0%   { opacity: 0; transform: translateY(40px); }
+  60%  { opacity: 1; transform: translateY(-8px); }
+  80%  { transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── BOUNCE IN (heart at end) ─────────── */
+@keyframes bounceIn {
+  0%   { opacity: 0; transform: scale(0.3); }
+  60%  { opacity: 1; transform: scale(1.15); }
+  80%  { transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ─── SHIMMER BUTTON ───────────────────── */
+@keyframes shimmer-btn {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: -100% 50%; }
+}
+
+/* ─── FLOAT UP DOWN (surprise btn) ────── */
+@keyframes floatUpDown {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-6px); }
+}
+
+/* ─── ORBIT (hearts around button) ─────── */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+
+/* ─── GRADIENT SHIFT (bday section) ────── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── HERO WORD BLUR→CLEAR ─────────────── */
+@keyframes wordReveal {
+  0%   { opacity: 0; filter: blur(10px); }
+  100% { opacity: 1; filter: blur(0); }
+}
+.hero-word.reveal { animation: wordReveal 0.8s ease forwards; }
+
+/* ─── HERO NAME ─────────────────────────── */
+@keyframes nameReveal {
+  0%   { opacity: 0; letter-spacing: 0.6em; }
+  100% { opacity: 1; letter-spacing: 0.05em; }
+}
+.hero-name.reveal { animation: nameReveal 1s ease forwards; }
+
+/* ─── SUBTITLE FADE ─────────────────────── */
+@keyframes subtitleFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-subtitle.reveal { animation: subtitleFade 0.7s ease forwards; }
+
+/* ─── GLOW BURST ────────────────────────── */
+@keyframes glowBurst {
+  0%   { transform: translate(-50%,-50%) scale(0); opacity: 0.8; }
+  60%  { transform: translate(-50%,-50%) scale(80); opacity: 0.35; }
+  100% { transform: translate(-50%,-50%) scale(140); opacity: 0; }
+}
+.hero-glow.burst { animation: glowBurst 1.4s ease-out forwards; }
+
+/* ─── DOM HEART FLOAT ───────────────────── */
+@keyframes heartFloat {
+  0%   { opacity: 0.9; transform: translate(var(--tx), var(--ty)) scale(1); }
+  80%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translate(var(--tx2), var(--ty2)) scale(0.6); }
+}
+
+/* ─── DOT PULSE ON TIMELINE ─────────────── */
+@keyframes dotPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,182,193,0.6); }
+  70%  { box-shadow: 0 0 0 10px rgba(255,182,193,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,182,193,0); }
+}
+
+/* ─── BLINK (cursor) ────────────────────── */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ─── CAKE – SLIDE UP TIER ──────────────── */
+@keyframes tierSlideUp {
+  from { opacity: 0; transform: translateY(120px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cake-tier.rise { animation: tierSlideUp 0.4s cubic-bezier(0.25,0.8,0.25,1) forwards; }
+
+/* ─── CAKE – DRIP ────────────────────────── */
+@keyframes dripDown {
+  from { clip-path: inset(0 0 100% 0); }
+  to   { clip-path: inset(0 0 0% 0); }
+}
+
+/* ─── CAKE – CANDLE SCALE ───────────────── */
+@keyframes candleScaleUp {
+  from { opacity: 0; transform: scaleY(0); }
+  to   { opacity: 1; transform: scaleY(1); }
+}
+.candle.rise { transform-origin: bottom; animation: candleScaleUp 0.3s ease forwards; }
+
+/* ─── CAKE – FLAME FLICKER ──────────────── */
+@keyframes flicker {
+  0%   { transform: scale(1,1)   rotate(-3deg); opacity: 1; }
+  25%  { transform: scale(0.9,1.2) rotate(3deg); opacity: 0.9; }
+  50%  { transform: scale(1.1,0.9) rotate(-2deg); opacity: 1; }
+  75%  { transform: scale(0.95,1.1) rotate(2deg); opacity: 0.95; }
+  100% { transform: scale(1,1)   rotate(-3deg); opacity: 1; }
+}
+
+/* ─── CAKE – SPARKLE BURST ──────────────── */
+@keyframes sparkBurst {
+  0%   { opacity: 1; transform: rotate(var(--angle)) translateX(0); }
+  100% { opacity: 0; transform: rotate(var(--angle)) translateX(25px); }
+}
+.sparkle-dot.burst { animation: sparkBurst 0.5s ease-out forwards; }
+
+/* ─── CAKE GLOW PULSE ───────────────────── */
+@keyframes cakeGlow {
+  0%,100% { box-shadow: 0 0 40px rgba(201,169,110,0.2); }
+  50%     { box-shadow: 0 0 80px rgba(201,169,110,0.5); }
+}
+
+/* ─── STAGGER FADE UP (bday lines, pm-lines) */
+@keyframes staggerFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.bday-line.reveal { animation: staggerFadeUp 0.6s ease forwards; }
+.pm-line.reveal   { animation: staggerFadeUp 0.5s ease forwards; }
+
+/* ─── CAKE EMOJI DROP ───────────────────── */
+@keyframes emojiDrop {
+  0%   { opacity: 0; transform: translateY(-60px) rotate(0deg); }
+  60%  { transform: translateY(10px) rotate(360deg); }
+  100% { opacity: 1; transform: translateY(0) rotate(360deg); }
+}
+.cake-drop-emoji.drop { animation: emojiDrop 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+
+/* ─── HEART BOUNCE (bottom row) ────────── */
+@keyframes heartBounce {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-8px); }
+}
+
+/* ─── ENVELOPE OPEN ─────────────────────── */
+@keyframes envelopeOpen {
+  0%   { transform: scale(0.8) rotate(-5deg); }
+  50%  { transform: scale(1.15) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* ─── HERO GLOW DOT APPEAR ──────────────── */
+@keyframes dotAppear {
+  from { transform: translate(-50%,-50%) scale(0); opacity: 1; }
+  to   { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+}
+
+/* ─── REDUCED MOTION OVERRIDE ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

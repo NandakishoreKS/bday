@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07050a">
+  <title>Happy Birthday Jiya ❤️</title>
+
+  <!-- Google Fonts: Cormorant Garamond + Jost -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- SVG Noise Texture Overlay -->
+  <svg class="noise-overlay" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;">
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="overlay"/>
+    </filter>
+  </svg>
+  <div class="noise-layer"></div>
+
+  <!-- Particles Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Background Music -->
+  <audio id="bgmusic" src="audio/bgmusic.mp3" loop preload="none"></audio>
+
+  <!-- Music Toggle -->
+  <button id="music-btn" class="music-toggle" aria-label="Toggle Music">
+    <svg class="vinyl-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="22" cy="22" r="20" stroke="#c9a96e" stroke-width="2"/>
+      <circle cx="22" cy="22" r="12" fill="#1a0a1a" stroke="rgba(255,100,150,0.3)" stroke-width="1"/>
+      <circle cx="22" cy="22" r="4" fill="#c9a96e"/>
+      <path d="M14 8 Q22 2 30 8" stroke="#c9a96e" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M10 16 Q4 22 10 30" stroke="#c9a96e" stroke-width="1.5" fill="none" opacity="0.5"/>
+    </svg>
+  </button>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SECTION 1: HERO                        -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="hero" class="hero">
+    <!-- Glow burst (spawned by JS) -->
+    <div id="hero-glow" class="hero-glow"></div>
+    <!-- DOM Hearts container (spawned by JS) -->
+    <div id="hero-hearts" class="hero-hearts-container"></div>
+
+    <div class="hero-content" id="hero-content">
+      <h1 class="hero-title">
+        <span class="hero-word" style="--i:0">Happy</span>
+        <span class="hero-word" style="--i:1">Birthday</span>
+      </h1>
+      <h2 class="hero-name" id="hero-name">Jiya ❤️</h2>
+      <p class="hero-subtitle" id="hero-subtitle">My love, my life, my everything 🌙</p>
+      <button class="cta-btn" id="scroll-down-btn">Explore Our Journey ❤️</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SECTION 2: ABOUT HER                   -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="about" class="section about-section">
+    <h2 class="section-title" data-aos="fade-up">My Beautiful Star ✨</h2>
+    <div class="photo-ring-wrap" data-aos="zoom-in">
+      <div class="conic-ring"></div>
+      <img src="images/jiya.jpg" alt="Jiya" class="about-photo" onerror="this.src='https://via.placeholder.com/220x220/c9a96e/07050a?text=Jiya'">
+    </div>
+    <p class="about-body glass-card" id="about-text" data-aos="fade-up">
+      Every moment with you makes life brighter. I'm grateful that you are part of my life.
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SECTION 3: TIMELINE                    -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="timeline" class="section timeline-section">
+    <h2 class="section-title" data-aos="fade-up">Our Story So Far 💫</h2>
+    <div class="timeline-wrap">
+      <!-- SVG drawing line on left -->
+      <svg class="timeline-svg" id="timeline-svg" preserveAspectRatio="none">
+        <line id="tl-line" x1="1" y1="0" x2="1" y2="100%"/>
+      </svg>
+
+      <div class="timeline-items">
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="0">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass-card">
+            <div class="tl-emoji">🏫</div>
+            <h3>10th Class</h3>
+            <p>Where it all began. The stolen glances and the first time I realized you were someone special.</p>
+          </div>
+        </div>
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass-card">
+            <div class="tl-emoji">💑</div>
+            <h3>30 November 2019</h3>
+            <p>The day our relationship officially started. The best decision of my life. ❤️</p>
+          </div>
+        </div>
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass-card">
+            <div class="tl-emoji">🎓</div>
+            <h3>Higher Secondary</h3>
+            <p>We started loving and admiring each other more every single day.</p>
+          </div>
+        </div>
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="600">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass-card">
+            <div class="tl-emoji">📚</div>
+            <h3>Entrance Exam Days</h3>
+            <p>Even with long distance and silence, we trusted each other completely.</p>
+          </div>
+        </div>
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="800">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass-card">
+            <div class="tl-emoji">🏛️</div>
+            <h3>College Life</h3>
+            <p>Both of us joined college and continued our beautiful journey together.</p>
+          </div>
+        </div>
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="1000">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass-card">
+            <div class="tl-emoji">🎉</div>
+            <h3>7 Beautiful Years</h3>
+            <p>And I still fall for you more every single day. Here's to forever. ❤️</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SECTION 4: SPECIAL MEMORY              -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="special" class="section special-section">
+    <h2 class="section-title" data-aos="fade-up">The Entrance Exam Story 💌</h2>
+    <div class="special-card glass-card" data-aos="zoom-in">
+      <div class="envelope-icon" id="envelope-icon">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">💌</div>
+      </div>
+      <p class="typewriter-target" id="memory-text"></p>
+      <span class="memory-heart hidden" id="memory-heart">❤️</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SECTION 5: GALLERY                     -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="gallery" class="section gallery-section">
+    <h2 class="section-title" data-aos="fade-up">Our Beautiful Moments 📸</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item-wrap" data-aos="fade-up" data-index="0">
+        <img src="images/photo1.jpg" alt="Memory 1" class="gallery-img" onerror="this.src='https://via.placeholder.com/600x600/c9a96e/07050a?text=Us+1'">
+      </div>
+      <div class="gallery-item-wrap" data-aos="fade-up" data-aos-delay="100" data-index="1">
+        <img src="images/photo2.jpg" alt="Memory 2" class="gallery-img" onerror="this.src='https://via.placeholder.com/600x600/ffb6c1/07050a?text=Us+2'">
+      </div>
+      <div class="gallery-item-wrap" data-aos="fade-up" data-aos-delay="200" data-index="2">
+        <img src="images/photo3.jpg" alt="Memory 3" class="gallery-img" onerror="this.src='https://via.placeholder.com/600x600/c9a96e/07050a?text=Us+3'">
+      </div>
+      <div class="gallery-item-wrap" data-aos="fade-up" data-aos-delay="300" data-index="3">
+        <img src="images/jiya.jpg" alt="Memory 4" class="gallery-img" onerror="this.src='https://via.placeholder.com/600x600/ffb6c1/07050a?text=Us+4'">
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lb-close">&times;</button>
+    <img class="lb-img" id="lb-img" src="" alt="">
+    <p class="lb-swipe-hint">← swipe →</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SECTION 6: BIRTHDAY MESSAGE            -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="bday-msg" class="section bday-msg-section">
+    <div class="cake-drop-emoji" id="cake-drop">🎂</div>
+    <div class="bday-lines" id="bday-lines">
+      <p class="bday-line">Every year with you is a gift,</p>
+      <p class="bday-line">but today is extra special</p>
+      <p class="bday-line">because it's the day the world got a little brighter.</p>
+      <p class="bday-line">Happy Birthday, my love! 🌹</p>
+      <p class="bday-line">Here's to everything that makes you, YOU.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SECTION 7: SURPRISE BUTTON             -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="surprise-trigger" class="section surprise-trigger-section">
+    <div class="orbit-wrap">
+      <div class="orbit-heart oh-1">♥</div>
+      <div class="orbit-heart oh-2">♥</div>
+      <div class="orbit-heart oh-3">♥</div>
+      <div class="orbit-heart oh-4">♥</div>
+      <div class="orbit-heart oh-5">♥</div>
+      <div class="orbit-heart oh-6">♥</div>
+      <button class="surprise-btn" id="surprise-btn">Open Your Surprise 🎁</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SECTION 8: CAKE POPUP                  -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="popup-overlay" id="popup-overlay">
+    <button class="popup-close" id="popup-close">&times;</button>
+    <div class="popup-scroll">
+      <div class="popup-inner">
+
+        <!-- CSS Cake -->
+        <div class="cake-wrap" id="cake-wrap">
+          <!-- Drips sit above each tier -->
+          <div class="tier-row" id="tier-top-row">
+            <div class="cake-tier tier-top" id="tier-top"></div>
+            <div class="drips-row" id="drips-top">
+              <span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span>
+            </div>
+          </div>
+          <div class="tier-row" id="tier-mid-row">
+            <div class="cake-tier tier-mid" id="tier-mid"></div>
+            <div class="drips-row" id="drips-mid">
+              <span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span>
+            </div>
+          </div>
+          <div class="tier-row" id="tier-bot-row">
+            <div class="cake-tier tier-bot" id="tier-bot"></div>
+            <div class="drips-row" id="drips-bot">
+              <span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span>
+            </div>
+          </div>
+          <div class="candles-row" id="candles-row">
+            <div class="candle" id="c1"><div class="candle-body"></div><div class="flame" id="f1"></div><div class="sparkle-ring" id="sr1"></div></div>
+            <div class="candle" id="c2"><div class="candle-body"></div><div class="flame" id="f2"></div><div class="sparkle-ring" id="sr2"></div></div>
+            <div class="candle" id="c3"><div class="candle-body"></div><div class="flame" id="f3"></div><div class="sparkle-ring" id="sr3"></div></div>
+          </div>
+          <div class="cake-glow" id="cake-glow"></div>
+        </div>
+
+        <!-- Post-cake reveal -->
+        <div class="popup-reveal" id="popup-reveal">
+          <div class="tw-wrap">
+            <span class="tw-text" id="tw-text"></span><span class="tw-cursor" id="tw-cursor">|</span>
+          </div>
+          <div class="popup-photo-wrap">
+            <div class="conic-ring sm-ring"></div>
+            <img src="images/jiya.jpg" alt="Jiya" class="popup-photo" onerror="this.src='https://via.placeholder.com/150x150/ffb6c1/07050a?text=Jiya'">
+          </div>
+          <div class="popup-msg-lines" id="popup-msg-lines">
+            <p class="pm-line">Thank you for being born. 🌹</p>
+            <p class="pm-line">Thank you for your beautiful heart.</p>
+            <p class="pm-line">Thank you for being mine. ❤️</p>
+            <p class="pm-line">Forever yours — always and always.</p>
+          </div>
+          <div class="bottom-hearts">
+            <span class="b-heart bh1">♥</span>
+            <span class="b-heart bh2">♥</span>
+            <span class="b-heart bh3">♥</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">Made with ❤️ for Jiya</footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/confetti.js"></script>
+  <script src="js/surprise.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
