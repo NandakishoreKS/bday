@@ -117,7 +117,7 @@ const initSpecialMemory = () => {
   const envelope   = document.getElementById('envelope-icon');
   if (!section || !target) return;
 
-  const text = "I still remember the day of the entrance exam. The stress, the tension — and amidst it all, you were my calm. We sat together flipping through pages, but all I could focus on was how cute you looked when you were deeply concentrated. In a room full of people worried about their futures, I realized my future was sitting right next to me.";
+  const text = "When I was preparing for my entrance exam, we didn't have daily calls or messages. But we still trusted each other completely. And when I finally came home during holidays and we met again, that moment felt so wholesome. It reminded me how special our relationship truly is.";
   let started = false;
 
   const obs = new IntersectionObserver((entries) => {

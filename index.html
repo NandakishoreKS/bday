@@ -226,32 +226,64 @@
     <div class="popup-scroll">
       <div class="popup-inner">
 
-        <!-- CSS Cake -->
+        <!-- CSS Cake — candles on top, tiers narrow→wide going down, plate at bottom -->
         <div class="cake-wrap" id="cake-wrap">
-          <!-- Drips sit above each tier -->
+
+          <!-- CANDLES (at the very top) -->
+          <div class="candles-row" id="candles-row">
+            <div class="candle" id="c1">
+              <div class="sparkle-ring" id="sr1"></div>
+              <div class="flame" id="f1"></div>
+              <div class="candle-body"></div>
+            </div>
+            <div class="candle" id="c2">
+              <div class="sparkle-ring" id="sr2"></div>
+              <div class="flame" id="f2"></div>
+              <div class="candle-body"></div>
+            </div>
+            <div class="candle" id="c3">
+              <div class="sparkle-ring" id="sr3"></div>
+              <div class="flame" id="f3"></div>
+              <div class="candle-body"></div>
+            </div>
+          </div>
+
+          <!-- TOP TIER (narrowest) -->
           <div class="tier-row" id="tier-top-row">
-            <div class="cake-tier tier-top" id="tier-top"></div>
+            <div class="cake-tier tier-top" id="tier-top">
+              <div class="frosting-top"></div>
+              <div class="cake-body-top"></div>
+            </div>
             <div class="drips-row" id="drips-top">
               <span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span>
             </div>
           </div>
+
+          <!-- MID TIER -->
           <div class="tier-row" id="tier-mid-row">
-            <div class="cake-tier tier-mid" id="tier-mid"></div>
+            <div class="cake-tier tier-mid" id="tier-mid">
+              <div class="frosting-top"></div>
+              <div class="cake-body-top"></div>
+            </div>
             <div class="drips-row" id="drips-mid">
               <span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span>
             </div>
           </div>
+
+          <!-- BOTTOM TIER (widest) -->
           <div class="tier-row" id="tier-bot-row">
-            <div class="cake-tier tier-bot" id="tier-bot"></div>
+            <div class="cake-tier tier-bot" id="tier-bot">
+              <div class="frosting-top"></div>
+              <div class="cake-body-top"></div>
+            </div>
             <div class="drips-row" id="drips-bot">
               <span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span>
             </div>
           </div>
-          <div class="candles-row" id="candles-row">
-            <div class="candle" id="c1"><div class="candle-body"></div><div class="flame" id="f1"></div><div class="sparkle-ring" id="sr1"></div></div>
-            <div class="candle" id="c2"><div class="candle-body"></div><div class="flame" id="f2"></div><div class="sparkle-ring" id="sr2"></div></div>
-            <div class="candle" id="c3"><div class="candle-body"></div><div class="flame" id="f3"></div><div class="sparkle-ring" id="sr3"></div></div>
-          </div>
+
+          <!-- CAKE PLATE / BASE -->
+          <div class="cake-plate"></div>
+
           <div class="cake-glow" id="cake-glow"></div>
         </div>
 
