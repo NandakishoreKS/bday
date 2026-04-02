@@ -1,5 +1,11 @@
-/* Minimal responsive overrides — mobile-first base is in style.css */
+/* Minimal desktop override — mobile-first base is in style.css */
 @media (min-width: 481px) {
-  .section { max-width: 520px; }
-  .bday-msg-section { max-width: 100%; }
+  .about-section,
+  .special-section,
+  .timeline-section,
+  .gallery-section,
+  .surprise-section {
+    max-width: 520px;
+    margin: 0 auto;
+  }
 }

@@ -1,28 +1,40 @@
-// timeline.js — SVG line drawing + IntersectionObserver reveals
+// js/timeline.js — Accordion: one item open at a time, stagger reveal on scroll
 const initTimeline = () => {
-  const line = document.getElementById('tl-line');
-  const section = document.getElementById('timeline');
-  const items = document.querySelectorAll('.tl-item');
-  if (!line || !section) return;
+  const accordion = document.getElementById('timeline-accordion');
+  if (!accordion) return;
 
-  // SVG line draws itself in sync with scroll
-  const drawLine = () => {
-    const rect = section.getBoundingClientRect();
-    const progress = Math.min(Math.max((-rect.top + window.innerHeight * 0.5) / rect.height, 0), 1);
-    line.style.strokeDashoffset = 2000 - progress * 2000;
-  };
-  window.addEventListener('scroll', drawLine, { passive: true });
-  drawLine();
+  const items = accordion.querySelectorAll('.acc-item');
 
-  // Dot pulse + card reveal per item
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        revealObs.unobserve(entry.target);
+  // Scroll-triggered stagger reveal
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      items.forEach((item, i) => {
+        setTimeout(() => item.classList.add('vis'), i * 100);
+      });
+      obs.disconnect();
+    }
+  }, { threshold: 0.1 });
+  obs.observe(accordion);
+
+  // Accordion tap — one open at a time
+  items.forEach(item => {
+    const trigger = item.querySelector('.acc-trigger');
+    const toggle = () => {
+      const isActive = item.classList.contains('active');
+      // Close all
+      items.forEach(i => {
+        i.classList.remove('active');
+        const arrow = i.querySelector('.acc-arrow');
+        if (arrow) arrow.textContent = '+';
+      });
+      // Re-open if wasn't active
+      if (!isActive) {
+        item.classList.add('active');
+        const arrow = item.querySelector('.acc-arrow');
+        if (arrow) arrow.textContent = '−';
       }
-    });
-  }, { threshold: 0.3 });
-
-  items.forEach(item => revealObs.observe(item));
+    };
+    trigger.addEventListener('touchstart', toggle, { passive: true });
+    trigger.addEventListener('click', toggle);
+  });
 };

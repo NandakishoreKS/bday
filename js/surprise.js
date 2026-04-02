@@ -1,163 +1,75 @@
-// surprise.js — Exact cake build timing + typewriter + confetti rain
+// js/surprise.js — Envelope letter animation sequence
 const initSurprise = () => {
-  const btn     = document.getElementById('surprise-btn');
-  const overlay = document.getElementById('popup-overlay');
-  const closeBtn = document.getElementById('popup-close');
-  if (!btn || !overlay) return;
+  const openBtn  = document.getElementById('open-letter-btn');
+  const overlay  = document.getElementById('letter-overlay');
+  const closeBtn = document.getElementById('letter-close');
+  const env      = document.getElementById('env');
+  const lines    = document.querySelectorAll('.ll');
+  const closing  = document.getElementById('letter-closing');
+  const sign     = document.getElementById('letter-sign');
 
-  let built = false;
-  let confettiRAF = null;
+  if (!openBtn || !overlay) return;
+
+  let sequenced = false;
 
   const open = () => {
     overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    if (!built) { built = true; buildCake(); }
+
+    if (!sequenced) {
+      sequenced = true;
+      runSequence();
+    }
   };
 
-  btn.addEventListener('touchstart', open, { passive: true });
-  btn.addEventListener('click', open);
+  openBtn.addEventListener('touchstart', open, { passive: true });
+  openBtn.addEventListener('click', open);
 
   const close = () => {
     overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    if (confettiRAF) cancelAnimationFrame(confettiRAF);
-    confettiRAF = null;
   };
   closeBtn.addEventListener('touchstart', close, { passive: true });
   closeBtn.addEventListener('click', close);
 
-  // ── CAKE BUILD ──────────────────────────────────────────────
-  const buildCake = () => {
-    const tierBot = document.getElementById('tier-bot');
-    const tierMid = document.getElementById('tier-mid');
-    const tierTop = document.getElementById('tier-top');
-    const dripsBot = document.getElementById('drips-bot');
-    const dripsMid = document.getElementById('drips-mid');
-    const dripsTop = document.getElementById('drips-top');
-    const candlesRow = document.getElementById('candles-row');
-    const candles   = [document.getElementById('c1'), document.getElementById('c2'), document.getElementById('c3')];
-    const flames    = [document.getElementById('f1'), document.getElementById('f2'), document.getElementById('f3')];
-    const sparkRings = [document.getElementById('sr1'), document.getElementById('sr2'), document.getElementById('sr3')];
-    const cakeGlow   = document.getElementById('cake-glow');
+  // Tap outside letter content to close
+  overlay.addEventListener('touchstart', (e) => {
+    if (e.target === overlay) close();
+  }, { passive: true });
 
-    // t=0.0 bottom tier
-    setTimeout(() => { tierBot.classList.add('rise'); }, 0);
+  // ── SEQUENCE ──────────────────────────────────────────────
+  const runSequence = () => {
+    const letterContent = document.getElementById('letter-content');
 
-    // t=0.3 bottom drips
+    // t=0.4s: Open envelope flap
+    setTimeout(() => env?.classList.add('opened'), 400);
+
+    // t=1.1s: Show the letter card below envelope
+    setTimeout(() => letterContent?.classList.add('show'), 1100);
+
+    // Fire gentle confetti
     setTimeout(() => {
-      dripsBot.style.opacity = '1';
-      dripsBot.classList.add('dripping');
-    }, 300);
-
-    // t=0.5 middle tier
-    setTimeout(() => { tierMid.classList.add('rise'); }, 500);
-
-    // t=0.7 middle drips
-    setTimeout(() => {
-      dripsMid.style.opacity = '1';
-      dripsMid.classList.add('dripping');
-    }, 700);
-
-    // t=0.9 top tier
-    setTimeout(() => { tierTop.classList.add('rise'); }, 900);
-
-    // t=1.1 top drips
-    setTimeout(() => {
-      dripsTop.style.opacity = '1';
-      dripsTop.classList.add('dripping');
-    }, 1100);
-
-    // t=1.2 candles (staggered 100ms each)
-    setTimeout(() => {
-      candlesRow.style.opacity = '1';
-      candles.forEach((c, i) => {
-        setTimeout(() => c.classList.add('rise'), i * 100);
-      });
-    }, 1200);
-
-    // t=1.4 flames
-    setTimeout(() => {
-      flames.forEach((f, i) => {
-        setTimeout(() => f.classList.add('lit'), i * 80);
-      });
-    }, 1400);
-
-    // t=1.5 sparkles burst from each candle
-    setTimeout(() => {
-      sparkRings.forEach(ring => burstSparkles(ring));
-    }, 1500);
-
-    // t=1.7 cake glow pulses in
-    setTimeout(() => {
-      if (cakeGlow) cakeGlow.classList.add('pulse');
-    }, 1700);
-
-    // t=2.0 after cake built → confetti rain, typewriter, then photo
-    setTimeout(() => {
-      startConfettiRain();
-      startTypewriter();
-    }, 2000);
-  };
-
-  // ── SPARKLE BURST ────────────────────────────────────────────
-  const burstSparkles = (ring) => {
-    const colors = ['#ffb6c1', '#c9a96e', '#fff0c0', '#ff4d8f'];
-    for (let i = 0; i < 8; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'sparkle-dot';
-      dot.style.setProperty('--angle', `${i * 45}deg`);
-      dot.style.background = colors[i % colors.length];
-      ring.appendChild(dot);
-      setTimeout(() => dot.classList.add('burst'), i * 60);
-      setTimeout(() => dot.remove(), 700 + i * 60);
-    }
-  };
-
-  // ── CONFETTI RAIN (4 seconds) ────────────────────────────────
-  const startConfettiRain = () => {
-    if (typeof confetti !== 'function') return;
-    const end = Date.now() + 4000;
-    const opts = { particleCount: 4, spread: 50, colors: ['#ffb6c1','#c9a96e','#fff0c0','#ff4d8f','#fff'] };
-    const frame = () => {
-      confetti({ ...opts, angle: 60,  origin: { x: 0,   y: 0 } });
-      confetti({ ...opts, angle: 120, origin: { x: 1,   y: 0 } });
-      if (Date.now() < end) confettiRAF = requestAnimationFrame(frame);
-    };
-    confettiRAF = requestAnimationFrame(frame);
-  };
-
-  // ── TYPEWRITER ────────────────────────────────────────────────
-  const startTypewriter = () => {
-    const reveal  = document.getElementById('popup-reveal');
-    const twText  = document.getElementById('tw-text');
-    const twCursor = document.getElementById('tw-cursor');
-    const msgLines = document.querySelectorAll('.pm-line');
-    const bHearts  = document.querySelectorAll('.b-heart');
-    const closeBtn = document.getElementById('popup-close');
-
-    if (!reveal) return;
-
-    const txt = "Happy Birthday Jiya ❤️";
-    let i = 0;
-    const type = setInterval(() => {
-      if (i < txt.length) {
-        twText.textContent += txt[i++];
-      } else {
-        clearInterval(type);
-        twCursor.style.display = 'none';
-        // Show photo + message
-        setTimeout(() => {
-          reveal.classList.add('show');
-          closeBtn.classList.add('show');
-          msgLines.forEach((line, idx) => {
-            setTimeout(() => line.classList.add('reveal'), idx * 300);
-          });
-          // Bottom hearts
-          setTimeout(() => {
-            bHearts.forEach(h => h.classList.add('show'));
-          }, msgLines.length * 300 + 400);
-        }, 400);
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 40,
+          spread: 60,
+          origin: { y: 0.4 },
+          colors: ['#E29595', '#FFFDF9', '#d4a0a0', '#f5ebe0'],
+          gravity: 0.6, scalar: 0.8, ticks: 120,
+        });
       }
-    }, 80);
+    }, 900);
+
+    // t=1.3s–2.5s: Letter lines appear one by one
+    lines.forEach((line, i) => {
+      setTimeout(() => line.classList.add('show'), 1300 + i * 280);
+    });
+
+    // After all lines
+    const totalDelay = 1300 + lines.length * 280;
+    setTimeout(() => closing?.classList.add('show'), totalDelay + 200);
+    setTimeout(() => sign?.classList.add('show'),    totalDelay + 600);
   };
 };
