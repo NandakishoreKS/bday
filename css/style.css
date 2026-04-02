@@ -199,14 +199,20 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--shadow);
 }
 .about-img {
-  width: 100%; height: auto;
-  max-height: 65vw;
+  width: 100%;
+  aspect-ratio: 4 / 5;          /* tall portrait — reveals head + torso */
   object-fit: cover;
-  display: block;
+  object-position: top center;  /* anchor face at top */
   border-radius: 16px;
+  display: block;
+  will-change: transform;
 }
 @media (min-width: 640px) {
-  .about-img { max-height: 420px; }
+  .about-img {
+    aspect-ratio: unset;
+    height: 460px;
+    object-position: top center;
+  }
 }
 .frame-border {
   position: absolute; inset: 0;
